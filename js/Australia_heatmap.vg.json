@@ -20,14 +20,14 @@
 
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/map.topojson",
+        "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/js/map.topojson",
         "format": {"type": "topojson", "feature": "Australia"}
       },
       "mark": {"type": "geoshape", "fill": "lightgray"}
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/filtered_max_temps.csv"
+        "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/filtered_max_temps.csv"
       },
       "transform": [
         {"filter": "datum.Year == year"},
