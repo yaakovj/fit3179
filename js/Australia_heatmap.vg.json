@@ -12,7 +12,7 @@
       "input": "range",
       "min": 1910,
       "max": 2020,
-      "step": 10,
+      "step": 10
     }
   }
 ],
