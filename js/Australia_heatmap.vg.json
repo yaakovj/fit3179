@@ -53,7 +53,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/map.topojson",
+        "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/js/map.topojson",
         "format": {"type": "topojson", "feature": "ne_110m_graticules_5"}
         
       },
