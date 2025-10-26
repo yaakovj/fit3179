@@ -37,7 +37,7 @@
       "field": "Year",
       "type": "ordinal",
       "sort": null,
-      "axis": { "labelAngle": 0, "title": "Year", "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 }
+      "axis": { "labelAngle": -45, "title": "Year", "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 }
     }
   },
   "layer": [
@@ -74,7 +74,7 @@
       }
     },
     {
-      "mark": { "type": "text", "dy": { "expr": "datum.Change >= 0 ? -4 : 4" }, "baseline": { "expr": "datum.Change >= 0 ? 'bottom' : 'top'" } },
+      "mark": { "type": "text","fontSize":10, "dy": { "expr": "datum.Change >= 0 ? -4 : 4" }, "baseline": { "expr": "datum.Change >= 0 ? 'bottom' : 'top'" } },
       "encoding": {
         "y": { "field": "sum", "type": "quantitative" },
         "color": {
@@ -85,7 +85,7 @@
       }
     },
     {
-      "mark": { "type": "text", "fontWeight": "bold", "baseline": { "expr": "datum.Change >= 0 ? 'top' : 'bottom'" }, "dy": { "expr": "datum.Change * 0.03 + 5*(datum.Change/abs(datum.Change))" } },
+      "mark": { "type": "text", "fontWeight": "bold", "fontSize":11,"baseline": { "expr": "datum.Change >= 0 ? 'top' : 'bottom'" }, "dy": { "expr": "datum.Change * 0.02 + 3*(datum.Change/abs(datum.Change))" } },
       "encoding": {
         "y": { "field": "center", "type": "quantitative" },
         "text": { "field": "text_Change", "type": "nominal" },
