@@ -1,76 +1,80 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 620,
-  "height": 780,
-  "title": {"text": "Yearly Max Temperatures Across Australia 1910-2020", "fontSize": 24},  
-  "projection": {"type": "mercator"},
-"params": [
-  {
-    "name": "year",
-    "value": 2000,
-    "bind": {
-      "input": "range",
-      "min": 1910,
-      "max": 2020,
-      "step": 10
+  "width": 600,
+  "height": 500,
+  "background": "transparent",
+  "title": {
+    "text": "Yearly Max Temperatures Across Australia 1910-2020",
+    "font": "Arial",
+    "fontSize": 18
+  },
+  "projection": { "type": "mercator" },
+  "params": [
+    {
+      "name": "year",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 1910,
+        "max": 2020,
+        "step": 10
+      }
     }
-  }
-],
+  ],
   "layer": [
-
     {
       "data": {
         "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/js/map.topojson",
-        "format": {"type": "topojson", "feature": "Australia"}
+        "format": { "type": "topojson", "feature": "Australia" }
       },
-      "mark": {"type": "geoshape", "fill": "lightgray"}
+      "mark": { "type": "geoshape", "fill": "lightgray" }
     },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/filtered_max_temps.csv"
       },
       "transform": [
-        {"filter": "datum.Year == year"},
-        {"calculate": "toNumber(datum.latitude) - 0.15", "as": "lat1"},
-        {"calculate": "toNumber(datum.latitude) + 0.15", "as": "lat2"},
-        {"calculate": "toNumber(datum.longitude) - 0.15", "as": "lon1"},
-        {"calculate": "toNumber(datum.longitude) + 0.15", "as": "lon2"}
+        { "filter": "datum.Year == year" },
+        { "calculate": "toNumber(datum.latitude) - 0.15", "as": "lat1" },
+        { "calculate": "toNumber(datum.latitude) + 0.15", "as": "lat2" },
+        { "calculate": "toNumber(datum.longitude) - 0.15", "as": "lon1" },
+        { "calculate": "toNumber(datum.longitude) + 0.15", "as": "lon2" }
       ],
-
-      "mark": {"type": "rect", "stroke": null},
+      "mark": { "type": "rect", "stroke": null },
       "encoding": {
-        "longitude": {"field": "lon1", "type": "quantitative"},
-        "latitude": {"field": "lat1", "type": "quantitative"},
-        "longitude2": {"field": "lon2"},
-        "latitude2": {"field": "lat2"},
+        "longitude": { "field": "lon1", "type": "quantitative" },
+        "latitude": { "field": "lat1", "type": "quantitative" },
+        "longitude2": { "field": "lon2" },
+        "latitude2": { "field": "lat2" },
         "color": {
           "field": "TXx",
           "type": "quantitative",
-          "scale": {"scheme": "reds","domain":[20,50]},
-          "legend": {"title": "Max Temp (C)","labelFontSize":15,"titleFontSize":15}
+          "scale": { "scheme": "reds", "domain": [20, 50] },
+          "legend": { "title": "Max Temp (C)", "labelFont": "Arial", "labelFontSize": 12, "titleFont": "Arial", "titleFontSize": 14 }
         }
       }
     },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/js/map.topojson",
-        "format": {"type": "topojson", "feature": "ne_110m_graticules_5"}
-        
+        "format": { "type": "topojson", "feature": "ne_110m_graticules_5" }
       },
-      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "black"}
-    
+      "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "black" }
     },
     {
-  "data": {"values": [{"region": "No values"}]},
-  "mark": {"type": "square", "fill": "lightgray"},
-  "encoding": {
-    "color": {
-      "field": "region",
-      "type": "nominal",
-       "scale": {"domain": ["No values"], "range": ["lightgray"]},
-      "legend": {"title": "","symbolSize":250,"labelFontSize":15}
+      "data": { "values": [{ "region": "No values" }] },
+      "mark": { "type": "square", "fill": "lightgray" },
+      "encoding": {
+        "color": {
+          "field": "region",
+          "type": "nominal",
+          "scale": { "domain": ["No values"], "range": ["lightgray"] },
+          "legend": { "title": "", "symbolSize": 250, "labelFont": "Arial", "labelFontSize": 12 }
+        }
+      }
     }
+  ],
+  "config": {
+    "view": { "stroke": null }
   }
-}
-]
 }
