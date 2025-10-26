@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 600,
-  "height": 500,
+  "height": 450,
   "background": "transparent",
   "title": {
     "text": "Victorian bushfires by decade",
-    "subtitle": "Wildfires from 10 year range before selected year (1925-2025)",
+    "subtitle": "Bushfires from the 10-year period ending in the selected year (1925-2025)",
     "font": "Arial",
     "fontSize": 18,
     "subtitleFontSize": 14,
@@ -41,7 +41,7 @@
           "title": "Area (Hectares)",
           "type": "quantitative",
           "scale": { "type": "log", "domain": [10, 100, 1000, 10000, 100000] },
-          "legend": { "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 }
+          "legend": { "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12,"orient": "top-right"}
         }
       }
     }
