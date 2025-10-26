@@ -4,11 +4,11 @@
     "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Percentage_days_over_90%25.csv"
   },
   "width": 600,
-  "height": 600,
+  "height": 500,
   "background": "transparent",
   "transform": [
-    { "calculate": "floor((toNumber(datum.Year)-5) / 15)", "as": "decades" },
-    { "calculate": "(toNumber(datum.Year) -5)% 15", "as": "subdecade" }
+    { "calculate": "floor((toNumber(datum.Year)-2) / 12)", "as": "decades" },
+    { "calculate": "(toNumber(datum.Year) -2)% 12", "as": "subdecade" }
   ],
   "title": {
     "text": "Percentage of hot days in Australia",
