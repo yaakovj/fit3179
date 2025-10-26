@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Percentage_days_over_90%25.csv"
+  },
+  "width": 800,
+  "height": 800,
+  "transform": [
+    {"calculate": "floor(datum.Year / 10)", "as": "decades"},
+    {"calculate": "datum.Year % 10", "as": "subdecade"}
+  ],
+  "title": {
+  "text": "Percentage of hot days in Australia",
+  "subtitle": "Percentage of days each year hotter in the 90th percentile compared to a 1961-1990 baseline",
+  "fontSize": 20,
+  "subtitleFontSize": 14
+},
+  "config": {"view": {"strokeWidth": 0, "step": 13}, "axis": {"domain": false}},
+  "layer": [
+    {
+      "mark": "rect",
+      "encoding": {
+        "x": {
+          "field": "subdecade",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {"field": "decades", "type": "ordinal", "title": "Month","axis":null},
+        "color": {
+          "field": "Percentage",
+          "type": "quantitative",
+          "scale": {"scheme": "yelloworangered", "type": "pow"},
+          "legend": {"title": "%","titleFontSize":15}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "dy": 0,
+        "fontSize": 13
+      },
+        "encoding": {
+        "x": { "field": "subdecade", "type": "ordinal" },
+        "y": { "field": "decades", "type": "ordinal" },
+        "text": { "field": "Year", "type": "ordinal" },
+        "color": { "value": "white"}
+  }
+    }
+  ]
+}
+  

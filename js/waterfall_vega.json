@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/New%20coal%20waterfall.csv" 
+  },
+  "width": 700,
+  "height": 650,
+  "transform": [
+    {"window": [{"op": "sum", "field": "Change", "as": "sum"}]},
+    {"window": [{"op": "lead", "field": "Year", "as": "lead"}]},
+    {
+      "calculate": "datum.lead === null ? datum.Year : datum.lead",
+      "as": "lead"
+    },
+    {
+      "calculate": "datum.sum - datum.Change",
+      "as": "previous_sum"
+    },
+    {
+      "calculate": "datum.Change",
+      "as": "Change"
+    },
+    {
+      "calculate": "(datum.Year !== '2000' && datum.Year !== '2025' && datum.Change > 0 ? '+' : '') + datum.Change",
+      "as": "text_Change"
+    },
+    {"calculate": "(datum.sum + datum.previous_sum) / 2", "as": "center"}
+  ],
+  "title":{"text":"Change in total capacity of coal fired plants"},
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "sort": null,
+      "axis": {"labelAngle": 0, "title": "Year"}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "size": 32},
+      "encoding": {
+        "y": {
+          "field": "previous_sum",
+          "type": "quantitative",
+          "title": "Change in coal production (MW)"
+          
+        },
+        "y2": {"field": "sum"},
+        "color": {
+          "condition": [
+            {"test": "datum.sum < datum.previous_sum", "value": "#f78a64"}
+          ],
+          "value": "#93c4aa"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#404040",
+        "opacity": 1,
+        "strokeWidth": 2,
+        "xOffset": -16,
+        "x2Offset": 16
+      },
+      "encoding": {
+        "x2": {"field": "lead"},
+        "y": {"field": "sum", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": {"expr": "datum.Change >= 0 ? -4 : 4"}, "baseline": {"expr": "datum.Change >= 0 ? 'bottom' : 'top'"}},
+      "encoding": {
+        "y": {"field": "sum", "type": "quantitative"},
+
+ "color": {
+          "condition": {"test": "datum.sum !== datum.previous_sum", "value": "black"},
+          "value": "white"
+        },
+          "text": {"field": "sum", "type": "nominal"}
+            
+      }
+    },
+    {
+      "mark": {"type": "text", "fontWeight": "bold", "baseline":  {"expr": "datum.Change >= 0 ? 'top' : 'bottom'"},"dy":{"expr": "datum.Change * 0.03 + 5*(datum.Change/abs(datum.Change))"}},
+      "encoding": {
+        "y": {"field": "center", "type": "quantitative"},
+        "text": {"field": "text_Change", "type": "nominal"},
+        "color": {
+          "condition": [{"test": "datum.sum < datum.previous_sum", "value": "Red"}, {"test": "datum.sum == datum.previous_sum", "value": null}],
+          "value": "Green"
+        }
+      }
+    }
+  ],
+  "config": {"text": {"fontWeight": "bold", "color": "#404040","fontSize":11},"axis": {"titleFontSize":15,"labelFontSize":11}}
+}

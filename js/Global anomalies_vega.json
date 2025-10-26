@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Anomaly_Surface_Temp.csv"
+  },
+  "autosize": { "type": "fit", "contains": "padding" },
+  "title": {
+    "text": "Trend in Australian Average Surface Temperature",
+    "subtitle": "Temperature anomalies relative to a 1971–2000 monthly climatology"
+  },
+  "layer": [
+    {
+      "transform": [
+        { "calculate": "'Avg. Temp'", "as": "Type" }
+      ],
+      "mark": "line",
+      "encoding": {
+        "x": { "field": "Year", "type": "temporal","axis":{"tickCount":10}},
+        "y": { "field": "Average Temp", "type": "quantitative",  "axis": {
+    "title": "Temperature Anomaly (°C)",
+    "titleFontSize": 14,
+    "labelFontSize": 12}},
+        "color": {
+          "field": "Type",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Avg. Temp", "Trendline"],
+            "range": ["Steelblue", "crimson"]
+          },
+          "legend": { "title": null , "labelFontSize": 12}
+        }
+      }
+    },
+    {
+      "transform": [
+        { "calculate": "'Trendline'", "as": "Type" }
+      ],
+      "mark": {
+        "type": "line"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "axis": { "titleFontSize": 14, "labelFontSize": 12 }
+        },
+        "y": {
+          "field": "Trendline",
+          "type": "quantitative",
+          "axis": { "titleFontSize": 14, "labelFontSize": 12 }
+        },
+        "color": {
+          "field": "Type",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Avg. Temp", "Trendline"],
+            "range": ["Steelblue", "crimson"]
+          },
+          "legend": null
+        }
+      }
+    },
+{
+  "mark": {
+    "type": "text",
+    "align": "left",
+    "baseline": "bottom",
+    "fontSize": 12,
+    "fontWeight":"normal",
+      "font": "Arial",
+    "dx": -40,
+    "dy": 50
+  },
+  "encoding": {
+    "text": { "value": "Source: NOAA"},
+    "x": { "value": 0 },
+    "y": { "value": "height"}
+  }
+}
+  ]
+}

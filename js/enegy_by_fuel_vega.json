@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Energy%20consumption%20by%20fuel.csv"
+  },
+  "height": "500",
+  "width": "500",
+  "transform": [
+    {
+      "fold": [
+        "Black coal",
+        "Brown coal",
+        "Natural gas",
+        "Renewables",
+        "Oil products"
+      ],
+      "as": ["Source", "Share"]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Years",
+      "type": "ordinal",
+      "axis": {
+        "title": "Year",
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
+    },
+    "y": {
+      "field": "Share",
+      "type": "quantitative",
+      "scale": {"domain": [0, 100]},
+      "axis": {
+        "title": "Percentage Share",
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
+    },
+    "color": {
+      "field": "Source",
+      "type": "nominal",
+      "legend": {
+        "title": "Energy Source",
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
+    }
+  },
+  "title": {"text": "Australian Energy Generation By Fuel Type", "fontSize": 18}
+}
