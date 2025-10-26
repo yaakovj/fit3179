@@ -1,21 +1,24 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
     "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Percentage_days_over_90%25.csv"
   },
-  "width": 800,
-  "height": 800,
+  "width": 600,
+  "height": 600,
+  "background": "transparent",
   "transform": [
-    {"calculate": "floor(datum.Year / 10)", "as": "decades"},
-    {"calculate": "datum.Year % 10", "as": "subdecade"}
+    { "calculate": "floor(datum.Year / 10)", "as": "decades" },
+    { "calculate": "datum.Year % 10", "as": "subdecade" }
   ],
   "title": {
-  "text": "Percentage of hot days in Australia",
-  "subtitle": "Percentage of days each year hotter in the 90th percentile compared to a 1961-1990 baseline",
-  "fontSize": 20,
-  "subtitleFontSize": 14
-},
-  "config": {"view": {"strokeWidth": 0, "step": 13}, "axis": {"domain": false}},
+    "text": "Percentage of hot days in Australia",
+    "subtitle": "Percentage of days each year hotter in the 90th percentile compared to a 1961-1990 baseline",
+    "font": "Arial",
+    "fontSize": 18,
+    "subtitleFontSize": 14,
+    "subtitleFont": "Arial"
+  },
+  "config": { "view": { "strokeWidth": 0, "step": 13 }, "axis": { "domain": false } },
   "layer": [
     {
       "mark": "rect",
@@ -25,12 +28,12 @@
           "type": "ordinal",
           "axis": null
         },
-        "y": {"field": "decades", "type": "ordinal", "title": "Month","axis":null},
+        "y": { "field": "decades", "type": "ordinal", "title": "Month", "axis": null },
         "color": {
           "field": "Percentage",
           "type": "quantitative",
-          "scale": {"scheme": "yelloworangered", "type": "pow"},
-          "legend": {"title": "%","titleFontSize":15}
+          "scale": { "scheme": "orangered", "type": "log" },
+          "legend": { "title": "%", "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 }
         }
       }
     },
@@ -40,15 +43,15 @@
         "align": "center",
         "baseline": "middle",
         "dy": 0,
-        "fontSize": 13
+        "fontSize": 12,
+        "font": "Arial"
       },
-        "encoding": {
+      "encoding": {
         "x": { "field": "subdecade", "type": "ordinal" },
         "y": { "field": "decades", "type": "ordinal" },
         "text": { "field": "Year", "type": "ordinal" },
-        "color": { "value": "white"}
-  }
+        "color": { "value": "black" }
+      }
     }
   ]
 }
-  
