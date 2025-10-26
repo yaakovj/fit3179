@@ -1,91 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-  
-  
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-  
+
+  <!-- Inline CSS for layout and styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 30px;
+
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+
+    .flex-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 60px;
+      gap: 40px;
+      max-width: 1500px
+    }
+
+    .text-left,
+    .text-right {
+      flex: 1;
+      max-width: 40%;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      min-height: 300px;
+    }
+
+    .vis {
+      flex: 1;
+      max-width: 50%;
+    }
+
+    .full-width {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    hr {
+      margin: 60px 0;
+      border: 0;
+      border-top: 1px solid #ddd;
+    }
+
+    .references {
+      font-size: 0.9em;
+      text-align: left;
+    }
+
+    .closing {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+  </style>
 </head>
+
 <body>
-  
-<div id="Global_anomalies_vega" style="width: 620px; height: 900px; margin: 0 auto;"></div>
+  <div class="container">
+    <h1>Climate Change Impacts on Australian Weather</h1>
 
-<script type="text/javascript">
+    <!-- First visualization: Trend in Australian average surface temperatures -->
+    <div class="flex-row">
+      <div class="text-left">
+        <p>This line chart shows the trend in Australia's average surface temperature anomalies from 1850 to 2025,
+          relative to a 1971-2000 baseline. The upward trajectory significantly accellerates after 1950, underscoring how
+          climate change is driving warmer conditions across the nation, leading to more extreme weather events.</p>
+        <p>The following map complements this by displaying spatial variations in maximum temperatures, revealing
+          hotspots in inland areas.</p>
+      </div>
+      <div class="vis" id="Global_anomalies_vega" style="width: 600px; height: 300px;"></div>
+    </div>
 
-  var spec2 = "js/Global_anomalies_vega.json";
-  vegaEmbed('#Global_anomalies_vega', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
-<div id="Australia_heatmap" style="width: 620px; height: 900px; margin: 0 auto;"></div>
+    <!-- Second visualization: Yearly max temperatures across Australia -->
+    <div class="flex-row">
+      <div class="vis" id="Australia_heatmap" style="width: 600px; height: 500px;"></div>
+      <div class="text-right">
+        <p>This map highlights regional variations in maximum temperatures, with inland areas like the Northern
+          Territory and Western Australia often experiencing the highest extremes (up to 50°C), while coastal regions in
+          the south and east are relatively cooler due to ocean influences. These disparities show how climate change
+          affects different parts of Australia unevenly, exacerbating risks in arid zones.</p>
+      </div>
+    </div>
 
-<script type="text/javascript">
+    <!-- Title: Fossil fuels cause climate change -->
+    <h2>Fossil Fuels: The Primary Driver of Climate Change</h2>
+    <p class="subtitle">Burning coal, oil, and gas releases greenhouse gases that trap heat in the atmosphere,
+      intensifying global warming and disrupting Australia's weather patterns.</p>
 
-  var spec2 = "js/Australia_heatmap.vg.json";
-  vegaEmbed('#Australia_heatmap', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
-<div id="enegy_by_fuel_vega" style="width: 620px; height: 900px; margin: 0 auto;"></div>
+    <!-- Third visualization: Change in total capacity of coal fired plants -->
+    <div class="flex-row">
+      <div class="text-right">
+        <p>This waterfall chart tracks the annual changes in Australia's coal-fired power plant capacity from 2000 to
+          2025. The shift from additions to significant reductions reflects plant closures due to economic pressures and
+          policy shifts, marking progress in reducing coal reliance but highlighting the need for faster transitions.
+        </p>
+      </div>
+      <div class="vis" id="waterfall_vega" style="width: 600px; height: 400px;"></div>
+    </div>
 
-<script type="text/javascript">
+    <!-- Fourth visualization: Australian energy generation by fuel type -->
+    <div class="flex-row">
+      <div class="vis" id="enegy_by_fuel_vega" style="width: 600px; height: 500px;"></div>
+      <div class="text-left">
+        <p>This stacked bar chart illustrates the evolution of Australia's electricity generation mix from 1998-99 to
+          2024. While renewables have grown to 36%, fossil fuels still dominate at 65%, indicating that the pace of
+          change is insufficient to meet 2035 emissions targets and avoid worsening climate impacts.</p>
+      </div>
+    </div>
 
-  var spec2 = "js/enegy_by_fuel_vega.json";
-  vegaEmbed('#enegy_by_fuel_vega', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+    <!-- Title: Climate change has deadly consequences -->
+    <h2>The Deadly Consequences of Climate Change</h2>
+    <p class="subtitle">Rising temperatures and extreme weather events pose severe risks to human health, ecosystems,
+      and infrastructure across Australia.</p>
 
-<div id="waterfall_vega" style="width: 620px; height: 900px; margin: 0 auto;"></div>
+    <!-- Fifth visualization: Percentage of hot days in Australia -->
+    <div class="flex-row">
+      <div class="text-right">
+        <p>This heatmap displays the percentage of days each year hotter than the 90th percentile compared to a
+          1961-1990 baseline. The intensifying red shades in recent decades show a surge in hot days, which exacerbate
+          health issues like heatstroke and strain vulnerable populations.</p>
+      </div>
+      <div class="vis" id="Hot_days_vega" style="width: 600px; height: 500px;"></div>
 
-<script type="text/javascript">
+    </div>
 
-  var spec2 = "js/waterfall_vega.json";
-  vegaEmbed('#waterfall_vega', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+    <!-- Sixth visualization: Bushfires across Victoria by decade -->
+    <div class="flex-row">
+      <div class="vis" id="bushfires_vega" style="width: 600px; height: 500px;"></div>
+      <div class="text-left">
+        <p>This symbol map plots Victorian bushfires by decade from 1925-2025, with triangle sizes representing burned
+          area. The clustering and increasing scale in recent decades demonstrate how drier, hotter conditions from
+          climate change are fueling more intense and frequent fires.</p>
+      </div>
+    </div>
 
-<div id="Hot_days_vega" style="width: 620px; height: 900px; margin: 0 auto;"></div>
+    <!-- Closing lines -->
+    <div class="closing">
+      <p>We must act urgently to reverse climate change by accelerating the shift to renewables, reducing emissions, and
+        implementing strong policies. If we fail, Australia faces escalating threats: more devastating bushfires,
+        prolonged heatwaves, severe droughts, and rising sea levels, endangering lives, economies, and our unique
+        environment.</p>
+    </div>
 
-<script type="text/javascript">
+    <hr />
 
-  var spec2 = "js/Hot_days_vega.json";
-  vegaEmbed('#Hot_days_vega', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+    <!-- References -->
+    <div class="references">
+      <h3>References</h3>
+      <ul>
+        <li>Temperature Anomalies and Trends, Yearly Max Temperatures, and Percentage of Hot Days: Copyright <a href = www.climdex.org>
+          www.climdex.org</a>. Dataset: AGCD. Dataset version: 1.0. Citation: Australian Bureau of Meteorology. DOI: <a
+            href="https://doi.org/10.4227/166/5a8647d1c23e0">10.4227/166/5a8647d1c23e0</a>.</li>
+        <li>Coal Fired Plants Capacity Changes: Global Coal Plant Tracker, Global Energy Monitor, August 2025 release.
+          Available at: <a href="https://globalenergymonitor.org/projects/global-coal-plant-tracker/">Global Coal Plant
+            Tracker</a>.</li>
+        <li>Energy Generation by Fuel Type: Department of Climate Change, Energy, the Environment and Water. (n.d.).
+          </i><a
+            href="https://www.energy.gov.au/energy-data/australian-energy-statistics/data-charts/australian-electricity-generation-fuel-mix"><i>Australian electricity generation - fuel mix<a/>
+        </li>
+        <li>Victorian Bushfires by Decade: Digital atlas of australia. Available at: <a
+            href="https://digital.atlas.gov.au/datasets/912492b1683e494e8efbe84573ce6d70/about">Digital Atlas</li>
+      </ul>
+    </div>
+    </div>
 
-<div id="bushfires_vega" style="width: 620px; height: 900px; margin: 0 auto;"></div>
+  <!-- Scripts for embedding visualizations -->
+  <script type="text/javascript">
+    var spec1 = "https://raw.githubusercontent.com/yaakovj/fit3179/main/js/Global_anomalies_vega.json";
+        vegaEmbed('#Global_anomalies_vega', spec1).catch(console.error);
 
-<script type="text/javascript">
+        var spec2 = "https://raw.githubusercontent.com/yaakovj/fit3179/main/js/Australia_heatmap.vg.json";
+        vegaEmbed('#Australia_heatmap', spec2).catch(console.error);
 
-  var spec2 = "js/bushfires_vega.json";
-  vegaEmbed('#bushfires_vega', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+        var spec3 = "https://raw.githubusercontent.com/yaakovj/fit3179/main/js/waterfall_vega.json";
+        vegaEmbed('#waterfall_vega', spec3).catch(console.error);
 
+        var spec4 = "https://raw.githubusercontent.com/yaakovj/fit3179/main/js/enegy_by_fuel_vega.json";
+        vegaEmbed('#enegy_by_fuel_vega', spec4).catch(console.error);
 
+        var spec5 = "https://raw.githubusercontent.com/yaakovj/fit3179/main/js/Hot_days_vega.json";
+        vegaEmbed('#Hot_days_vega', spec5).catch(console.error);
 
-
-
-
-
-<div style="clear: both; margin-top: 20px; width: 620px; margin: 0 auto;">
-  <hr>
-  Source<br>
-  Created on 2025-09-29, copyright www.climdex.org<br>
-  Dataset: agcd<br>
-  Dataset version: 1.0<br>
-  Citation: Australian Bureau of Meteorology<br>
-  DOI: 10.4227/166/5a8647d1c23e0
-</div>
-
+        var spec6 = "https://raw.githubusercontent.com/yaakovj/fit3179/main/js/bushfires_vega.json";
+        vegaEmbed('#bushfires_vega', spec6).catch(console.error);
+  </script>
 </body>
+
 </html>
