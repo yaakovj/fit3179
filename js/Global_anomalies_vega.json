@@ -67,15 +67,15 @@
     {
       "transform": [{ "filter": "year(datum.Year) == 2024" }],
       "mark": {
-        "type": "rule",        // thin line acting as an arrow
+        "type": "rule",      
         "strokeWidth": 1,
         "color": "black"
       },
       "encoding": {
         "x": { "field": "Year", "type": "temporal" },
-        "x2": { "datum": "2023" },   // where the arrow points *from*
+        "x2": { "datum": "2023" },  
         "y": { "field": "Average Temp", "type": "quantitative" },
-        "y2": { "datum": 0.9 }             // small vertical offset if needed
+        "y2": { "datum": 0.9 } 
       }
     },
     {
