@@ -1,47 +1,52 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 620,
-  "height": 780,
+  "width": 600,
+  "height": 500,
+  "background": "transparent",
   "title": {
     "text": "Victorian bushfires by decade",
-    "subtitle":"Wildfires from 10 year range before selected year (1925-2025)",
-    "fontSize": 24
+    "subtitle": "Wildfires from 10 year range before selected year (1925-2025)",
+    "font": "Arial",
+    "fontSize": 18,
+    "subtitleFontSize": 14,
+    "subtitleFont": "Arial"
   },
-  "projection": {"type": "mercator"},
+  "projection": { "type": "mercator" },
   "params": [
     {
       "name": "year",
       "value": 2000,
-      "bind": {"input": "range", "min": 1925, "max": 2025, "step": 10}
+      "bind": { "input": "range", "min": 1925, "max": 2025, "step": 10 }
     }
   ],
   "layer": [
     {
-      "data":{
+      "data": {
         "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/js/fires_vic.topojson",
-        "format":{"type": "topojson","feature": "vic"}
+        "format": { "type": "topojson", "feature": "vic" }
       },
-      "mark":{"type": "geoshape","fill":"lightgray"}
-
-
+      "mark": { "type": "geoshape", "fill": "lightgray" }
     },
-    
     {
       "data": {
         "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/cleaned_fires.csv"
       },
-      "transform": [{"filter": "year  >= datum.ignition_date &&datum.ignition_date >= year - 10"}],
-      "mark": {"type": "point","shape":"triangle","color":"#DC143C","fill":"#FF4500","tooltip":true},
+      "transform": [{ "filter": "year >= datum.ignition_date && datum.ignition_date >= year - 10" }],
+      "mark": { "type": "point", "shape": "triangle", "color": "#dc143c", "fill": "#ff4500", "tooltip": true },
       "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude": { "field": "lat", "type": "quantitative" },
         "size": {
           "field": "area",
-          "title":"Area (Hectares)",
+          "title": "Area (Hectares)",
           "type": "quantitative",
-          "scale": {"type": "log","domain":[10,100,1000,10000,100000]}
+          "scale": { "type": "log", "domain": [10, 100, 1000, 10000, 100000] },
+          "legend": { "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 }
         }
       }
     }
-  ]
+  ],
+  "config": {
+    "view": { "stroke": null }
+  }
 }
