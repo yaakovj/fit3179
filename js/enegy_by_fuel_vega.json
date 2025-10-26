@@ -6,6 +6,11 @@
   "height": 400,
   "width": 500,
   "background": "transparent",
+    "title": {
+    "text": "Australian Energy Generation By Fuel Type",
+    "font": "Arial",
+    "fontSize": 18
+  },
   "transform": [
     {
       "fold": [
@@ -18,7 +23,7 @@
       "as": ["Source", "Share"]
     }
   ],
-  "mark": "bar",
+  "layer": [{"mark": "bar",
   "encoding": {
     "x": {
       "field": "Years",
@@ -56,15 +61,32 @@
         "labelFont": "Arial",
         "labelFontSize": 12,
         "titleFont": "Arial",
-        "titleFontSize": 14
+        "titleFontSize": 14,
+        "orient": "none",
+        "legendX":518,
+        "legendY":300
       }
     }
-  },
-  "title": {
-    "text": "Australian Energy Generation By Fuel Type",
-    "font": "Arial",
-    "fontSize": 18
-  },
+  }},
+  
+    {
+      "mark": "bar",
+      "data": { "values": [{ "y": 82 }] },
+      "mark": { "type": "rule", "strokeDash": [4, 4], "color": "#000000", "strokeWidth": 2 },
+      "encoding": {
+        "y": { "field": "y", "type": "quantitative" }
+      }
+    },
+    {
+      "data": { "values": [{ "y": 82, "text": "2030 Target: 82%", "x": "2023-24" }] },
+      "mark": { "type": "text", "align": "right", "dx": 210, "dy": 0, "font": "Arial", "fontSize": 12 },
+      "encoding": {
+        "x": { "field": "x", "type": "ordinal" },
+        "y": { "field": "y", "type": "quantitative" },
+        "text": { "field": "text" }
+      }
+    }
+  ],
   "config": {
     "view": { "stroke": null }
   }
