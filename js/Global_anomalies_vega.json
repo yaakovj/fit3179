@@ -65,20 +65,33 @@
       }
     },
     {
+      "transform": [{ "filter": "year(datum.Year) == 2024" }],
       "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "bottom",
-        "fontSize": 12,
-        "fontWeight": "normal",
-        "font": "Arial",
-        "dx": -40,
-        "dy": 50
+        "type": "rule",        // thin line acting as an arrow
+        "strokeWidth": 1,
+        "color": "black"
       },
       "encoding": {
-        "text": { "value": "Source: NOAA" },
-        "x": { "value": 0 },
-        "y": { "value": "height" }
+        "x": { "field": "Year", "type": "temporal" },
+        "x2": { "datum": "2023" },   // where the arrow points *from*
+        "y": { "field": "Average Temp", "type": "quantitative" },
+        "y2": { "datum": 0.9 }             // small vertical offset if needed
+      }
+    },
+    {
+      "transform": [{ "filter": "year(datum.Year) == 2024" }],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -60,
+        "dy": -18,
+        "font": "Arial",
+        "fontSize": 12
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "temporal" },
+        "y": { "field": "Average Temp", "type": "quantitative" },
+        "text": { "value": "Hottest year on record (2024)" }
       }
     }
   ],
