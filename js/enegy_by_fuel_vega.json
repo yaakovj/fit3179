@@ -1,10 +1,11 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
     "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Energy%20consumption%20by%20fuel.csv"
   },
-  "height": "500",
-  "width": "500",
+  "height": 400,
+  "width": 500,
+  "background": "transparent",
   "transform": [
     {
       "fold": [
@@ -25,29 +26,46 @@
       "axis": {
         "title": "Year",
         "labelAngle": 0,
+        "labelFont": "Arial",
         "labelFontSize": 12,
+        "titleFont": "Arial",
         "titleFontSize": 14
       }
     },
     "y": {
       "field": "Share",
       "type": "quantitative",
-      "scale": {"domain": [0, 100]},
+      "scale": { "domain": [0, 100] },
       "axis": {
         "title": "Percentage Share",
+        "labelFont": "Arial",
         "labelFontSize": 12,
+        "titleFont": "Arial",
         "titleFontSize": 14
       }
     },
     "color": {
       "field": "Source",
       "type": "nominal",
+      "scale": {
+        "domain": ["Black coal", "Brown coal", "Natural gas", "Oil products", "Renewables"],
+        "range": ["#4682b4", "#cd853f", "#ff4040", "#87cefa", "#228b22"]
+      },
       "legend": {
         "title": "Energy Source",
+        "labelFont": "Arial",
         "labelFontSize": 12,
+        "titleFont": "Arial",
         "titleFontSize": 14
       }
     }
   },
-  "title": {"text": "Australian Energy Generation By Fuel Type", "fontSize": 18}
+  "title": {
+    "text": "Australian Energy Generation By Fuel Type",
+    "font": "Arial",
+    "fontSize": 18
+  },
+  "config": {
+    "view": { "stroke": null }
+  }
 }
