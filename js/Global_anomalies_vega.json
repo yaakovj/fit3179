@@ -6,10 +6,13 @@
   "data": {
     "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Anomaly_Surface_Temp.csv"
   },
-  "autosize": { "type": "fit", "contains": "padding" },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "title": {
     "text": "Trend in Australian Average Surface Temperature",
-    "subtitle": "Temperature anomalies relative to a 1971–2000 monthly climatology",
+    "subtitle": "Temperature anomalies relative to a 1971-2000 monthly climatology",
     "font": "Arial",
     "fontSize": 18,
     "subtitleFontSize": 14,
@@ -18,26 +21,64 @@
   "layer": [
     {
       "transform": [
-        { "calculate": "'Avg. Temp'", "as": "Type" }
+        {
+          "calculate": "'Avg. Temp'",
+          "as": "Type"
+        }
       ],
       "mark": "line",
       "encoding": {
-        "x": { "field": "Year", "type": "temporal", "axis": { "tickCount": 10, "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 } },
-        "y": { "field": "Average Temp", "type": "quantitative", "axis": { "title": "Temperature Anomaly (°C)", "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 } },
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "axis": {
+            "tickCount": 10,
+            "titleFont": "Arial",
+            "titleFontSize": 14,
+            "labelFont": "Arial",
+            "labelFontSize": 12
+          }
+        },
+        "y": {
+          "field": "Average Temp",
+          "type": "quantitative",
+          "axis": {
+            "title": "Temperature Anomaly (°C)",
+            "titleFont": "Arial",
+            "titleFontSize": 14,
+            "labelFont": "Arial",
+            "labelFontSize": 12
+          }
+        },
         "color": {
           "field": "Type",
           "type": "nominal",
           "scale": {
-            "domain": ["Avg. Temp", "Trendline"],
-            "range": ["#4682b4", "#dc143c"]
+            "domain": [
+              "Avg. Temp",
+              "Trendline"
+            ],
+            "range": [
+              "#4682b4",
+              "#dc143c"
+            ]
           },
-          "legend": { "title": null, "labelFont": "Arial", "labelFontSize": 12, "titleFont": "Arial", "titleFontSize": 14 }
+          "legend": {
+            "title": null,
+            "labelFont": "Arial",
+            "labelFontSize": 12,
+            "titleFont": "Arial",
+            "titleFontSize": 14
+          }
         }
       }
     },
     {
       "transform": [
-        { "calculate": "'Trendline'", "as": "Type" }
+        {
+          "calculate": "'Trendline'",
+          "as": "Type"
+        }
       ],
       "mark": {
         "type": "line"
@@ -46,40 +87,74 @@
         "x": {
           "field": "Year",
           "type": "temporal",
-          "axis": { "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 }
+          "axis": {
+            "titleFont": "Arial",
+            "titleFontSize": 14,
+            "labelFont": "Arial",
+            "labelFontSize": 12
+          }
         },
         "y": {
           "field": "Trendline",
           "type": "quantitative",
-          "axis": { "titleFont": "Arial", "titleFontSize": 14, "labelFont": "Arial", "labelFontSize": 12 }
+          "axis": {
+            "titleFont": "Arial",
+            "titleFontSize": 14,
+            "labelFont": "Arial",
+            "labelFontSize": 12
+          }
         },
         "color": {
           "field": "Type",
           "type": "nominal",
           "scale": {
-            "domain": ["Avg. Temp", "Trendline"],
-            "range": ["#4682b4", "#dc143c"]
+            "domain": [
+              "Avg. Temp",
+              "Trendline"
+            ],
+            "range": [
+              "#4682b4",
+              "#dc143c"
+            ]
           },
           "legend": null
         }
       }
     },
     {
-      "transform": [{ "filter": "year(datum.Year) == 2024" }],
+      "transform": [
+        {
+          "filter": "year(datum.Year) == 2024"
+        }
+      ],
       "mark": {
-        "type": "rule",      
+        "type": "rule",
         "strokeWidth": 1,
         "color": "black"
       },
       "encoding": {
-        "x": { "field": "Year", "type": "temporal" },
-        "x2": { "datum": "2023" },  
-        "y": { "field": "Average Temp", "type": "quantitative" },
-        "y2": { "datum": 0.9 } 
+        "x": {
+          "field": "Year",
+          "type": "temporal"
+        },
+        "x2": {
+          "datum": "2023"
+        },
+        "y": {
+          "field": "Average Temp",
+          "type": "quantitative"
+        },
+        "y2": {
+          "datum": 0.9
+        }
       }
     },
     {
-      "transform": [{ "filter": "year(datum.Year) == 2024" }],
+      "transform": [
+        {
+          "filter": "year(datum.Year) == 2024"
+        }
+      ],
       "mark": {
         "type": "text",
         "align": "right",
@@ -89,13 +164,23 @@
         "fontSize": 12
       },
       "encoding": {
-        "x": { "field": "Year", "type": "temporal" },
-        "y": { "field": "Average Temp", "type": "quantitative" },
-        "text": { "value": "Hottest year on record (2024)" }
+        "x": {
+          "field": "Year",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "Average Temp",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Hottest year on record (2024)"
+        }
       }
     }
   ],
   "config": {
-    "view": { "stroke": null }
+    "view": {
+      "stroke": null
+    }
   }
 }
