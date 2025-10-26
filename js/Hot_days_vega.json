@@ -7,8 +7,8 @@
   "height": 600,
   "background": "transparent",
   "transform": [
-    { "calculate": "floor(datum.Year / 10)", "as": "decades" },
-    { "calculate": "datum.Year % 10", "as": "subdecade" }
+    { "calculate": "floor((toNumber(datum.Year)-5) / 15)", "as": "decades" },
+    { "calculate": "(toNumber(datum.Year) -5)% 15", "as": "subdecade" }
   ],
   "title": {
     "text": "Percentage of hot days in Australia",
