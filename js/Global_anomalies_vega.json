@@ -6,10 +6,6 @@
   "data": {
     "url": "https://raw.githubusercontent.com/yaakovj/fit3179/refs/heads/main/data/Anomaly_Surface_Temp.csv"
   },
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
-  },
   "title": {
     "text": "Trend in Australian Average Surface Temperature",
     "subtitle": "Temperature anomalies relative to a 1971-2000 monthly climatology",
